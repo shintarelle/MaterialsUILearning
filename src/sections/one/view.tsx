@@ -9,88 +9,9 @@ import BasicPagination from 'src/components/pagination/BasicPagination';
 import CardSmall from 'src/components/cards/CardSmall';
 import { useSettingsContext } from 'src/components/settings';
 import SortPanel2 from 'src/components/sort/SortPanel2';
+import { products } from '../../_mock/assets'
 
-const product = [
-  {
-    id: 1,
-    title: 'Nike Air Force 1 NDESTRUKT',
-    price: 83.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
-    collection: 'newest',
-  },
-  {
-    id: 2,
-    title: 'Foundations Matte Flip Flop',
-    price: 59.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'featured',
-  },
-  {
-    id: 3,
-    title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
-    price: 67.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
-  },
-  {
-    id: 4,
-    title: 'Arizona Soft Footbed Sandal',
-    price: 78.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'newest',
-  },
-  {
-    id: 5,
-    title: 'Nike Air Force 1 NDESTRUKT',
-    price: 83.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
-  },
-  {
-    id: 6,
-    title: 'Foundations Matte Flip Flop',
-    price: 59.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'featured',
-  },
-  {
-    id: 7,
-    title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
-    price: 67.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
-  },
-  {
-    id: 8,
-    title: 'Arizona Soft Footbed Sandal',
-    price: 78.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'featured',
-  },
-  {
-    id: 9,
-    title: 'Nike Air Force 1 NDESTRUKT',
-    price: 83.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
-  },
-  {
-    id: 10,
-    title: 'Foundations Matte Flip Flop',
-    price: 59.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'newest',
-  },
-  {
-    id: 11,
-    title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
-    price: 67.74,
-    image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
-  },
-  {
-    id: 12,
-    title: 'Arizona Soft Footbed Sandal',
-    price: 78.74,
-    image: 'https:api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-    collection: 'newest',
-  },
-];
+
 
 // ----------------------------------------------------------------------
 
@@ -100,6 +21,7 @@ export default function OneView() {
   const [page, setPage] = React.useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = React.useState('');
+
   const [genders, setGenders] = React.useState<string[]>([]);
   const [category, setCategory] = React.useState('');
   const [colors, setColors] = React.useState<string[]>([]);
@@ -112,8 +34,8 @@ const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
 
 const startIndex = (page - 1) * itemsPerPage;
 let filteredProducts = searchQuery
-  ? product.filter((item) => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
-  : [...product];
+  ? products.filter((item) => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
+  : [...products];
 
   if (sortBy === 'newest' || sortBy === 'featured') {
     filteredProducts = filteredProducts.filter((item) => item.collection === sortBy);

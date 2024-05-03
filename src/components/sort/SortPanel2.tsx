@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import CloseIcon from '@mui/icons-material/Close';
@@ -26,6 +27,8 @@ import SearchSortFilter from './SearchSortFilter';
 import GenderChipsArray from './GenderChipsArray';
 import ColorsChipsArray from './ColorsChipsArray';
 
+import ColorCheckbox from './ColorPicker3';
+
 
 
 interface SearchPanelProps {
@@ -47,8 +50,23 @@ interface SearchPanelProps {
 const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, genders, setGenders, category, setCategory, colors, setColors, price, setPrice, rating, setRating }) => {
   const [open, setOpen] = React.useState(false);
 
+  // условие для отображения чипов и баджей
+  const shouldShowBadge =
+    genders.length > 0 ||
+    category !== '' ||
+    colors.length > 0 ||
+    !(price[0] === 0 && price[1] === 200) ||
+    !(rating === 0);
+
   const handleToggleDrawer = () => {
     setOpen(!open);
+  };
+  const handleResetFilter = () => {
+    setGenders([]);
+    setCategory('');
+    setColors([]);
+    setPrice([0, 200]);
+    setRating(0);
   };
   const handleCheckboxChange = (value: string, checked: boolean) => {
     if (checked) {
@@ -91,8 +109,10 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
             >
               <Typography variant="h6">Filter</Typography>
               <Box sx={{ display: 'flex', gap: '10px' }}>
-                <IconButton onClick={handleToggleDrawer}>
-                  <RefreshIcon />
+                <IconButton onClick={handleResetFilter}>
+                  <Badge color="error" variant="dot" invisible={!shouldShowBadge}>
+                    <RefreshIcon />
+                  </Badge>
                 </IconButton>
                 <IconButton onClick={handleToggleDrawer}>
                   <CloseIcon />
@@ -159,6 +179,7 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
                 Color
               </Typography>
               <ColorPicker colors={colors} setColors={setColors} />
+              {/* <ColorCheckbox /> */}
 
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Price
@@ -176,7 +197,11 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
           <Button
             color="inherit"
             variant="text"
-            endIcon={<FilterListIcon />}
+            endIcon={
+              <Badge color="error" variant="dot" invisible={!shouldShowBadge}>
+                <FilterListIcon />
+              </Badge>
+            }
             onClick={handleToggleDrawer}
           >
             Filter
@@ -185,128 +210,129 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
         </Box>
       </Box>
 
-      {((genders.length > 0) ||
-        (category !== '') ||
-        (colors.length > 0) ||
-        (!(price[0] === 0 && price[1] === 200)) ||
-        (!(rating === 0))) && (
-          <Box>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              4 resulds found
-            </Typography>
+      {(genders.length > 0 ||
+        category !== '' ||
+        colors.length > 0 ||
+        !(price[0] === 0 && price[1] === 200) ||
+        !(rating === 0)) && (
+        <Box>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            4 resulds found
+          </Typography>
 
-            <Stack
-              spacing={{ xs: 1, sm: 2 }}
-              direction="row"
-              useFlexGap
-              flexWrap="wrap"
-              sx={{
-                alignItems: 'center',
-                mb: 3,
-              }}
-            >
-              {genders.length > 0 && (
-                <Stack
-                  spacing={{ xs: 1 }}
-                  direction="row"
-                  useFlexGap
-                  flexWrap="wrap"
-                  sx={{
-                    alignItems: 'center',
-                    border: '1px solid #e6ebed',
-                    borderRadius: '8px',
-                    width: 'max-content',
-                    pl: '10px',
-                  }}
-                >
-                  <Typography variant="subtitle2">Gender:</Typography>
-                  <GenderChipsArray genders={genders} setGenders={setGenders} />
-                </Stack>
-              )}
-
-              {category !== '' && (
-                <Stack
-                  spacing={{ xs: 1 }}
-                  direction="row"
-                  flexWrap="wrap"
-                  sx={{
-                    alignItems: 'center',
-                    border: '1px solid #e6ebed',
-                    borderRadius: '8px',
-                    width: 'max-content',
-                    pl: '10px',
-                  }}
-                >
-                  <Typography variant="subtitle2">Category:</Typography>
-                  <CategoryChips category={category} setCategory={setCategory} />
-                </Stack>
-              )}
-
-              {colors.length > 0 && (
-                <Stack
-                  spacing={{ xs: 1 }}
-                  direction="row"
-                  useFlexGap
-                  flexWrap="wrap"
-                  sx={{
-                    alignItems: 'center',
-                    border: '1px solid #e6ebed',
-                    borderRadius: '8px',
-                    width: 'max-content',
-                    pl: '10px',
-                  }}
-                >
-                  <Typography variant="subtitle2">Color:</Typography>
-                  <ColorsChipsArray colors={colors} setColors={setColors} />
-                </Stack>
-              )}
-
-              {!(price[0] === 0 && price[1] === 200) && (
-                <Stack
-                  spacing={{ xs: 1 }}
-                  direction="row"
-                  flexWrap="wrap"
-                  sx={{
-                    alignItems: 'center',
-                    border: '1px solid #e6ebed',
-                    borderRadius: '8px',
-                    width: 'max-content',
-                    pl: '10px',
-                  }}
-                >
-                  <Typography variant="subtitle2">Price:</Typography>
-                  <PriceChips price={price} setPrice={setPrice} />
-                </Stack>
-              )}
-
-              {!(rating === 0) && (
-                <Stack
-                  spacing={{ xs: 1 }}
-                  direction="row"
-                  flexWrap="wrap"
-                  sx={{
-                    alignItems: 'center',
-                    border: '1px solid #e6ebed',
-                    borderRadius: '8px',
-                    width: 'max-content',
-                    pl: '10px',
-                  }}
-                >
-                  <Typography variant="subtitle2">Rating:</Typography>
-                  <RatingChips rating={rating} setRating={setRating} />
-                </Stack>
-              )}
-
-              <Button
-                variant="text"
-                startIcon={<DeleteIcon sx={{ color: 'red' }} />}
-                sx={{ color: 'red' }}
+          <Stack
+            spacing={{ xs: 1, sm: 2 }}
+            direction="row"
+            useFlexGap
+            flexWrap="wrap"
+            sx={{
+              alignItems: 'center',
+              mb: 3,
+            }}
+          >
+            {genders.length > 0 && (
+              <Stack
+                spacing={{ xs: 1 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+                sx={{
+                  alignItems: 'center',
+                  border: '1px solid #e6ebed',
+                  borderRadius: '8px',
+                  width: 'max-content',
+                  pl: '10px',
+                }}
               >
-                Clear
-              </Button>
-            </Stack>
-          </Box>
-        )}
+                <Typography variant="subtitle2">Gender:</Typography>
+                <GenderChipsArray genders={genders} setGenders={setGenders} />
+              </Stack>
+            )}
+
+            {category !== '' && (
+              <Stack
+                spacing={{ xs: 1 }}
+                direction="row"
+                flexWrap="wrap"
+                sx={{
+                  alignItems: 'center',
+                  border: '1px solid #e6ebed',
+                  borderRadius: '8px',
+                  width: 'max-content',
+                  pl: '10px',
+                }}
+              >
+                <Typography variant="subtitle2">Category:</Typography>
+                <CategoryChips category={category} setCategory={setCategory} />
+              </Stack>
+            )}
+
+            {colors.length > 0 && (
+              <Stack
+                spacing={{ xs: 1 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+                sx={{
+                  alignItems: 'center',
+                  border: '1px solid #e6ebed',
+                  borderRadius: '8px',
+                  width: 'max-content',
+                  pl: '10px',
+                }}
+              >
+                <Typography variant="subtitle2">Color:</Typography>
+                <ColorsChipsArray colors={colors} setColors={setColors} />
+              </Stack>
+            )}
+
+            {!(price[0] === 0 && price[1] === 200) && (
+              <Stack
+                spacing={{ xs: 1 }}
+                direction="row"
+                flexWrap="wrap"
+                sx={{
+                  alignItems: 'center',
+                  border: '1px solid #e6ebed',
+                  borderRadius: '8px',
+                  width: 'max-content',
+                  pl: '10px',
+                }}
+              >
+                <Typography variant="subtitle2">Price:</Typography>
+                <PriceChips price={price} setPrice={setPrice} />
+              </Stack>
+            )}
+
+            {!(rating === 0) && (
+              <Stack
+                spacing={{ xs: 1 }}
+                direction="row"
+                flexWrap="wrap"
+                sx={{
+                  alignItems: 'center',
+                  border: '1px solid #e6ebed',
+                  borderRadius: '8px',
+                  width: 'max-content',
+                  pl: '10px',
+                }}
+              >
+                <Typography variant="subtitle2">Rating:</Typography>
+                <RatingChips rating={rating} setRating={setRating} />
+              </Stack>
+            )}
+
+            <Button
+              variant="text"
+              startIcon={<DeleteIcon sx={{ color: 'red' }} />}
+              sx={{ color: 'red' }}
+              onClick={handleResetFilter}
+            >
+              Clear
+            </Button>
+          </Stack>
+        </Box>
+      )}
     </Box>
   );
 };
