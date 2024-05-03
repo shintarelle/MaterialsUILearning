@@ -20,6 +20,7 @@ export const paths = {
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
+    id: (id: string) => `${ROOTS.DASHBOARD}/one/${id}`,
     one: `${ROOTS.DASHBOARD}/one`,
     two: `${ROOTS.DASHBOARD}/two`,
     three: `${ROOTS.DASHBOARD}/three`,
@@ -32,5 +33,5 @@ export const paths = {
   // Product
   product: {
     root: ROOTS.PRODUCT,
-  }
+  },
 };
