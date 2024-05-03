@@ -27,9 +27,6 @@ import SearchSortFilter from './SearchSortFilter';
 import GenderChipsArray from './GenderChipsArray';
 import ColorsChipsArray from './ColorsChipsArray';
 
-import ColorCheckbox from './ColorPicker3';
-
-
 
 interface SearchPanelProps {
   onSearch: (value: string) => void;
@@ -179,7 +176,6 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
                 Color
               </Typography>
               <ColorPicker colors={colors} setColors={setColors} />
-              {/* <ColorCheckbox /> */}
 
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Price
