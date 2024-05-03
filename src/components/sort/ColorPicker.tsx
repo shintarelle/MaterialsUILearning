@@ -27,32 +27,32 @@ const ColorPicker: FC<ColorPickerProps> = ({ colors, setColors }) => {
     <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
       <ColorButton
         color="#4caf50"
-        selected={selectedColor === '#4caf50'}
+        selected={colors.includes('#4caf50')}
         onClick={() => handleColorClick('#4caf50')}
       />
       <ColorButton
         color="#2196f3"
-        selected={selectedColor === '#2196f3'}
+        selected={colors.includes('#2196f3')}
         onClick={() => handleColorClick('#2196f3')}
       />
       <ColorButton
         color="#f44336"
-        selected={selectedColor === '#f44336'}
+        selected={colors.includes('#f44336')}
         onClick={() => handleColorClick('#f44336')}
       />
       <ColorButton
         color="#ffeb3b"
-        selected={selectedColor === '#ffeb3b'}
+        selected={colors.includes('#ffeb3b')}
         onClick={() => handleColorClick('#ffeb3b')}
       />
       <ColorButton
         color="#000"
-        selected={selectedColor === '#000'}
+        selected={colors.includes('#000')}
         onClick={() => handleColorClick('#000')}
       />
       <ColorButton
         color="#fff"
-        selected={selectedColor === '#fff'}
+        selected={colors.includes('#fff')}
         onClick={() => handleColorClick('#fff')}
       />
     </Box>
