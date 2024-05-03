@@ -44,6 +44,25 @@ let filteredProducts = searchQuery
   } else if (sortBy === 'priceHighToLow') {
     filteredProducts.sort((a, b) => b.price - a.price);
   }
+  if (genders.length > 0) {
+    filteredProducts = filteredProducts.filter((item) => genders.includes(item.gender));
+  }
+  if (category !== '') {
+    filteredProducts = filteredProducts.filter((item) => item.category === category.toLocaleLowerCase());
+  }
+  if (colors.length > 0) {
+    filteredProducts = filteredProducts.filter((item) =>
+      colors.some((color) => item.color.includes(color))
+    );
+  }
+  if (price[0] !== 0 || price[1] !== 200) {
+    filteredProducts = filteredProducts.filter(
+      (item) => item.price >= price[0] && item.price <= price[1]
+    );
+  }
+  if (rating !== 0) {
+    filteredProducts = filteredProducts.filter((item) => item.rating >= rating);
+  }
 
 const visibleProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
@@ -52,7 +71,6 @@ const handleSearch = (value: string) => {
   setSearchQuery(value);
 };
 
-  console.log('price', price)
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
       <Typography variant="h4" sx={{ mb: 4 }}>
