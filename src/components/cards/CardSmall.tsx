@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 
 
 // Интерфейс для данных, передаваемых в компонент
-interface CardData {
+export interface CardData {
   id: number;
   title: string;
   price: number;
@@ -31,7 +31,7 @@ interface CardSmallProps {
 
 // Компонент CardSmall с типизированными пропсами
 const CardSmall: React.FC<CardSmallProps> = ({ item }) => (
-  <Card sx={{ maxWidth: 270, height: '100%', display: 'flex', flexDirection: 'column' }}>
+  <Card sx={{  height: '100%', display: 'flex', flexDirection: 'column' }}>
     <Box sx={{ padding: '8px', marginBottom: '10px' }}>
       <img src={item.image} alt="Product" style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px' }} />
     </Box>

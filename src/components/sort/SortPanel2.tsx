@@ -16,6 +16,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Radio, Stack, Divider, Checkbox, FormGroup, FormLabel, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
 
+import { CardData } from '../cards/CardSmall'
 import PriceRange from './PriceRange';
 import PriceChips from './PriceChips';
 import ColorPicker from './ColorPicker';
@@ -42,9 +43,10 @@ interface SearchPanelProps {
   setPrice: React.Dispatch<React.SetStateAction<number[]>>;
   rating: number;
   setRating: React.Dispatch<React.SetStateAction<number>>;
+  filteredProducts: CardData[];
 }
 
-const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, genders, setGenders, category, setCategory, colors, setColors, price, setPrice, rating, setRating }) => {
+const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, genders, setGenders, category, setCategory, colors, setColors, price, setPrice, rating, setRating, filteredProducts }) => {
   const [open, setOpen] = React.useState(false);
 
   // условие для отображения чипов и баджей
@@ -75,7 +77,9 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, flexWrap: 'wrap' }}
+      >
         <SearchSortFilter onSearch={onSearch} />
         <Drawer
           anchor="right"
@@ -189,7 +193,17 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
             </Box>
           </Box>
         </Drawer>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: '15px', overflowY: 'auto' }}>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            gap: '15px',
+            overflowY: 'auto',
+            flexWrap: 'wrap',
+            py: 2,
+          }}
+        >
           <Button
             color="inherit"
             variant="text"
@@ -213,7 +227,10 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
         !(rating === 0)) && (
         <Box>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            4 resulds found
+            {filteredProducts.length === 1
+              ? `${filteredProducts.length} result found`
+              : `${filteredProducts.length} results found`}
+            {/* 4 results found */}
           </Typography>
 
           <Stack
