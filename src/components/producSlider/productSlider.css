@@ -1,0 +1,25 @@
+.mySlider {
+  /* border: 1px solid #000000; */
+  height: 64px;
+}
+
+/* .mySlider .slick-active {
+  opacity: 1;
+  border: 1px solid green !important;
+  border-radius: 12px;
+} */
+.avatar-container {
+  opacity: 0.5;
+}
+
+/* .avatar-container.active {
+  opacity: 1;
+  cursor: pointer;
+  border: 2.5px solid rgb(0, 167, 111);
+} */
+
+.slick-slide.slick-center .border {
+  opacity: 1;
+  cursor: pointer;
+  border: 2.5px solid rgb(0, 167, 111);
+}

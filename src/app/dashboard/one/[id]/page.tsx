@@ -1,9 +1,11 @@
-import React from 'react'
+import ProductItem from 'src/sections/one/productItem';
 
-function page() {
-  return (
-    <div>page</div>
-  )
+// ----------------------------------------------------------------------
+
+export const metadata = {
+  title: 'Dashboard: One / Product',
+};
+
+export default function Page() {
+  return <ProductItem />;
 }
-
-export default page

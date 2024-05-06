@@ -77,10 +77,33 @@ const handleSearch = (value: string) => {
         {' '}
         Shop{' '}
       </Typography>
-      <SortPanel2 onSearch={handleSearch} sortBy={sortBy} setSortBy={setSortBy} genders={genders} setGenders={setGenders} category={category} setCategory={setCategory} colors={colors} setColors={setColors} price={price} setPrice={setPrice} rating={rating} setRating={setRating} />
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <SortPanel2
+        onSearch={handleSearch}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        genders={genders}
+        setGenders={setGenders}
+        category={category}
+        setCategory={setCategory}
+        colors={colors}
+        setColors={setColors}
+        price={price}
+        setPrice={setPrice}
+        rating={rating}
+        setRating={setRating}
+        filteredProducts={filteredProducts}
+      />
+      <Grid container rowSpacing={1} columnSpacing={3} sx={{ mb: 4 }}>
         {visibleProducts.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            key={item.id}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          >
             <CardSmall item={item} />
           </Grid>
         ))}
