@@ -93,16 +93,16 @@ function AsNavFor() {
 
   console.log(centerSlideIndex)
   return (
-    <Box sx={{ maxWidth: '700px', p: '20px' }}>
+    <Box sx={{ maxWidth: '700px', p: '32px' }}>
       <div className="slider-container mySlider">
         <Box sx={{ mb: 2, position: 'relative' }}>
           <Slider asNavFor={nav2} ref={sliderRef1} className="mySl">
             {images.map((item, index) => (
-              <Box key={index} sx={{ width: '645px', height: '645px' }}>
+              <Box key={index} sx={{ maxWidth: '645px', maxHeight: '645px' }}>
                 <Avatar
                   alt="Remy Sharp"
                   src={item}
-                  sx={{ width: '645px', height: '645px', borderRadius: '12px', m: 'auto' }}
+                  sx={{ width: '100%', height: '100%', borderRadius: '12px', m: 'auto' }}
                 />
               </Box>
             ))}

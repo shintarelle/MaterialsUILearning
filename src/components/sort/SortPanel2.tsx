@@ -179,7 +179,9 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Color
               </Typography>
-              <ColorPicker colors={colors} setColors={setColors} />
+              <Box sx={{mb: 4}}>
+                <ColorPicker colors={colors} setColors={setColors} />
+              </Box>
 
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Price

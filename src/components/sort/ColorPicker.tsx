@@ -24,7 +24,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ colors, setColors }) => {
 
 
   return (
-    <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
       <ColorButton
         color="#4caf50"
         selected={colors.includes('#4caf50')}
