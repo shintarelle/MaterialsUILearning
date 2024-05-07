@@ -2,15 +2,21 @@
 
 import Box from '@mui/material/Box';
 import React from 'react';
-import ProductInfo from 'src/components/producSlider/ProductInfo';
-import ProductSlider from 'src/components/producSlider/ProductSlider';
+import GridProductInfo from 'src/components/product/GridProductInfo';
+import ProductInfo from 'src/components/product/ProductInfo';
+import ProductSlider from 'src/components/product/ProductSlider';
+import TabsPanel from 'src/components/product/TabsPanel';
 
 function ProductItem() {
   const [colors, setColors] = React.useState<string[]>([]);
   return (
-    <Box sx={{ display: 'flex', maxWidth: '1200px' }}>
-      <ProductSlider />
-      <ProductInfo colors={colors} setColors={setColors} />
+    <Box>
+      <Box sx={{ display: 'flex',  maxWidth: '1200px', flexDirection: { xs: 'column', md: 'row' }, }}>
+        <ProductSlider />
+        <ProductInfo colors={colors} setColors={setColors} />
+      </Box>
+      <GridProductInfo />
+      <TabsPanel />
     </Box>
   );
 }
