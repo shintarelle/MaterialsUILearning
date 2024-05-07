@@ -11,7 +11,7 @@ function ProductItem() {
   const [colors, setColors] = React.useState<string[]>([]);
   return (
     <Box>
-      <Box sx={{ display: 'flex',  maxWidth: '1200px', flexDirection: { xs: 'column', md: 'row' }, }}>
+      <Box sx={{ display: 'flex',  maxWidth: '1200px', flexDirection: { xs: 'column', lg: 'row' }, }}>
         <ProductSlider />
         <ProductInfo colors={colors} setColors={setColors} />
       </Box>

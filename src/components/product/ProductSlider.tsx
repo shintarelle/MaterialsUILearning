@@ -1,25 +1,20 @@
 'use client'
 
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import './productSlider.css'
+import 'slick-carousel/slick/slick-theme.css';
 import React, { useState, useEffect, useRef } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { useMediaQuery, useTheme } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const images = [
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_2.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_11.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_15.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
-];
+import './productSlider.css'
+import {images} from '../../_mock/assets'
 
 
 // В компонентах CustomPrevArrow и CustomNextArrow
@@ -61,6 +56,9 @@ const CustomNextArrow = ({ onClick }: { onClick: () => void }) => (
 
 
 function AsNavFor() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const [nav1, setNav1] = useState<Slider | undefined>(undefined);
   const [nav2, setNav2] = useState<Slider | undefined>(undefined);
   const [centerSlideIndex, setCenterSlideIndex] = useState<number>(2);
@@ -133,7 +131,7 @@ function AsNavFor() {
           <Slider
             asNavFor={nav1}
             ref={sliderRef2}
-            slidesToShow={5}
+            slidesToShow={isMobile? 3: 5}
             swipeToSlide
             focusOnSelect
             className="mySlider"

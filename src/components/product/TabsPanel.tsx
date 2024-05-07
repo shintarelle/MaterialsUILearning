@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ProductDescription from './ProductDescription';
+import ProductRewiew from './ProductReview';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,7 +26,7 @@ function CustomTabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+            {children}
         </Box>
       )}
     </div>
@@ -59,7 +60,7 @@ export default function TabsPanel() {
           <ProductDescription />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Item Two
+          <ProductRewiew />
         </CustomTabPanel>
       </Box>
     </Paper>

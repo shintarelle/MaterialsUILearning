@@ -22,7 +22,7 @@ interface ProductInfoProps {
 const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
   console.log();
   return (
-    <Box sx={{ p: '32px' }}>
+    <Box sx={{ p: '32px', minWidth: '400px'}}>
       <FormControl>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <Box sx={{ pt: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
