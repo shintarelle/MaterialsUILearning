@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Box, Grid, Stack, SvgIcon, Typography } from '@mui/material'
-import ShieldIcon from '@mui/icons-material/Shield';
-import CheckIcon from '@mui/icons-material/Check';
+import { Box, Grid, Stack, SvgIcon, Typography , useMediaQuery, useTheme } from '@mui/material'
 
 function GridProductInfo() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <Stack direction="row" sx={{ my: '80px', gap: '40px' }}>
+    <Stack direction={isMobile ? 'column' : 'row'} sx={{ my: '80px', gap: '40px' }}>
       <Box
         sx={{
           px: '40px',

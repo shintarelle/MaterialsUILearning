@@ -655,3 +655,11 @@ export const products = [
     rating: 4,
   },
 ];
+
+export const images = [
+  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
+  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_2.jpg',
+  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_11.jpg',
+  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_15.jpg',
+  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
+];

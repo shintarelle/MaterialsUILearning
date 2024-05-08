@@ -4,11 +4,12 @@ import Button from '@mui/material/Button';
 import ColorButton from './ColorButton';
 
 interface ColorPickerProps {
+  availableColors: string[];
   colors: string[];
   setColors: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({ colors, setColors }) => {
+const ColorPicker: FC<ColorPickerProps> = ({ availableColors, colors, setColors }) => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleColorClick = (color: string) => {
@@ -25,7 +26,15 @@ const ColorPicker: FC<ColorPickerProps> = ({ colors, setColors }) => {
 
   return (
     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-      <ColorButton
+      {availableColors.map((color) =>
+        <ColorButton
+          key={color}
+        color={color}
+        selected={colors.includes(color)}
+        onClick={() => handleColorClick(color)}
+      />)}
+
+      {/* <ColorButton
         color="#4caf50"
         selected={colors.includes('#4caf50')}
         onClick={() => handleColorClick('#4caf50')}
@@ -54,7 +63,7 @@ const ColorPicker: FC<ColorPickerProps> = ({ colors, setColors }) => {
         color="#fff"
         selected={colors.includes('#fff')}
         onClick={() => handleColorClick('#fff')}
-      />
+      /> */}
     </Box>
   );
 };

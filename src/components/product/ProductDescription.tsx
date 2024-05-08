@@ -1,12 +1,9 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import { Circle } from '@mui/icons-material';
-import { ListItemText } from '@mui/material';
 
 
 interface FlexListProps {

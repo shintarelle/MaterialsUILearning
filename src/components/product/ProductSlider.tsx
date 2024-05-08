@@ -1,25 +1,21 @@
 'use client'
 
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import './productSlider.css'
+import 'slick-carousel/slick/slick-theme.css';
 import React, { useState, useEffect, useRef } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { useMediaQuery, useTheme } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const images = [
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_2.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_11.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_15.jpg',
-  'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
-];
+import './productSlider.css'
+import {images} from '../../_mock/assets'
+import { CardData } from '../cards/CardSmall';
 
 
 // В компонентах CustomPrevArrow и CustomNextArrow
@@ -59,8 +55,14 @@ const CustomNextArrow = ({ onClick }: { onClick: () => void }) => (
   </IconButton>
 );
 
+interface ProductSliderProps {
+  productCurrent?: CardData;
+}
 
-function AsNavFor() {
+function ProductSlider({ productCurrent }: ProductSliderProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const [nav1, setNav1] = useState<Slider | undefined>(undefined);
   const [nav2, setNav2] = useState<Slider | undefined>(undefined);
   const [centerSlideIndex, setCenterSlideIndex] = useState<number>(2);
@@ -75,9 +77,9 @@ function AsNavFor() {
   }, []);
 
   const handleAfterChange = (currentSlide: number) => {
-    console.log('press', currentSlide)
-    setCenterSlideIndex(currentSlide );
-    setCenterSlideIndexSmall(currentSlide );
+    console.log('press', currentSlide);
+    setCenterSlideIndex(currentSlide);
+    setCenterSlideIndexSmall(currentSlide);
   };
   const handleSliderPrev = () => {
     if (nav1) {
@@ -91,12 +93,11 @@ function AsNavFor() {
     }
   };
 
-
   return (
-    <Box sx={{ maxWidth: '700px', p: '32px', m:{sm: '0 auto'}}}>
+    <Box sx={{ maxWidth: '700px', p: '32px', m: { sm: '0 auto' } }}>
       <div className="slider-container mySlider">
         <Box sx={{ mb: 2, position: 'relative' }}>
-          <Slider asNavFor={nav2} ref={sliderRef1} className="mySl" >
+          <Slider asNavFor={nav2} ref={sliderRef1} className="mySl">
             {images.map((item, index) => (
               <Box key={index} sx={{ maxWidth: '645px', maxHeight: '645px' }}>
                 <Avatar
@@ -133,7 +134,7 @@ function AsNavFor() {
           <Slider
             asNavFor={nav1}
             ref={sliderRef2}
-            slidesToShow={5}
+            slidesToShow={isMobile ? 3 : 5}
             swipeToSlide
             focusOnSelect
             className="mySlider"
@@ -168,4 +169,4 @@ function AsNavFor() {
   );
 }
 
-export default AsNavFor;
+export default ProductSlider;
