@@ -2,6 +2,7 @@ import React from 'react'
 
 import EditIcon from '@mui/icons-material/Edit';
 import { Box, Rating, Stack, Typography, LinearProgress, Button, Grid, useTheme, useMediaQuery } from '@mui/material';
+import AddReviewDialog from './AddReviewDialog';
 
 function AvarageRating() {
 
@@ -120,14 +121,15 @@ function AvarageRating() {
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Button
+          {/* <Button
             variant="contained"
             size="large"
             startIcon={<EditIcon />}
             sx={{ backgroundColor: '#f7f7f7', color: '#000000' }}
           >
             Write rewiew
-          </Button>
+          </Button> */}
+          <AddReviewDialog />
         </Box>
       </Grid>
     </Grid>

@@ -1,12 +1,11 @@
-import ProductItem from 'src/sections/one/productItem';
+import Checkout from 'src/sections/one/checkout';
 
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: One / Product',
+  title: 'Dashboard: Basket',
 };
 
 export default function Page() {
-
-  return <ProductItem />;
+  return <Checkout />;
 }

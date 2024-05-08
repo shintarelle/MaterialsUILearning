@@ -1,5 +1,5 @@
 // import Input from '@mui/joy/Input';
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 
 import AddIcon from '@mui/icons-material/Add';
 import FormLabel from '@mui/material/FormLabel';
@@ -12,17 +12,32 @@ import { Box, Divider, Rating, Stack, Typography, FormHelperText, Link, Button }
 import SizeSelect from './SizeSelect';
 import ColorPicker from '../sort/ColorPicker';
 import QuantitySelect from './QuantitySelect';
+import { CardData } from '../cards/CardSmall';
 
 
 interface ProductInfoProps {
   colors: string[];
   setColors: React.Dispatch<React.SetStateAction<string[]>>;
+  productCurrent: CardData
 }
 
-const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
-  console.log();
+const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors, productCurrent }) => {
+  const [selectedSize, setSelectedSize] = useState<string>('');
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSubmit = () => {
+    const selectedData = {
+      title: productCurrent?.title,
+      size: selectedSize,
+      color: productCurrent?.color,
+      price: productCurrent?.price,
+      quantity,
+      image: productCurrent?.image,
+    };
+    console.log(selectedData);
+  };
   return (
-    <Box sx={{ p: '32px', minWidth: '400px'}}>
+    <Box sx={{ p: '32px', minWidth: '400px' }}>
       <FormControl>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <Box sx={{ pt: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -48,16 +63,16 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
             </Typography>
 
             <Typography variant="h5" sx={{ fontWeight: 700, fontSize: '1.25rem' }}>
-              Zoom Freak 2
+              {productCurrent.title}
             </Typography>
 
             <Stack direction="row">
-              <Rating name="read-only" value={3} readOnly />
+              <Rating name="read-only" value={productCurrent.rating} readOnly />
               <Typography component="legend">(3.36k reviews)</Typography>
             </Stack>
 
             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: '1.25rem' }}>
-              $25.18
+              {`$${productCurrent.price}`}
             </Typography>
 
             <Typography variant="body1" sx={{ color: 'rgb(99, 115, 129)' }}>
@@ -73,7 +88,11 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
               Color
             </Typography>
             <Box sx={{ maxWidth: '150px' }}>
-              <ColorPicker colors={colors} setColors={setColors} />
+              <ColorPicker
+                availableColors={[productCurrent.color]}
+                colors={colors}
+                setColors={setColors}
+              />
             </Box>
           </Stack>
 
@@ -83,7 +102,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
             </Typography>
             <FormControl>
               <FormLabel sx={{ display: 'none' }}>Label</FormLabel>
-              <SizeSelect />
+              <SizeSelect selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
               <FormHelperText sx={{ textDecoration: 'underline' }}>
                 <Link color="neutral">Size Chart</Link>
               </FormHelperText>
@@ -95,7 +114,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
               Quantity
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <QuantitySelect />
+              <QuantitySelect quantity={quantity} setQuantity={setQuantity} />
               <Typography variant="caption" sx={{ opacity: 0.7 }}>
                 Available: 7
               </Typography>
@@ -109,11 +128,11 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
               variant="contained"
               size="large"
               startIcon={<ShoppingCartIcon />}
+              onClick={handleSubmit}
               sx={{
                 backgroundColor: '#ffaa00',
                 color: 'black',
                 width: 'calc(50% - 12px)',
-                // flexGrow: 1,
                 '&:hover': {
                   color: '#ffffff',
                 },
@@ -131,7 +150,6 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors }) => {
                 backgroundColor: '#ffaa00',
                 color: 'black',
                 width: 'calc(50% - 12px)',
-                // flexGrow: 1,
                 '&:hover': {
                   color: '#ffffff',
                 },

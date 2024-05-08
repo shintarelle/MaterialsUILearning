@@ -1,14 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { alpha } from '@mui/material/styles';
+
+import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import BasicPagination from 'src/components/pagination/BasicPagination';
+
 import CardSmall from 'src/components/cards/CardSmall';
-import { useSettingsContext } from 'src/components/settings';
 import SortPanel2 from 'src/components/sort/SortPanel2';
+import { useSettingsContext } from 'src/components/settings';
+import BasketButton from 'src/components/product/BasketButton';
+import BasicPagination from 'src/components/pagination/BasicPagination';
+
 import { products } from '../../_mock/assets'
 
 
@@ -77,6 +80,7 @@ const handleSearch = (value: string) => {
         {' '}
         Shop{' '}
       </Typography>
+      <BasketButton />
       <SortPanel2
         onSearch={handleSearch}
         sortBy={sortBy}

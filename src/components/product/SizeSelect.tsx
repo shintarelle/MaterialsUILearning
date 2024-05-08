@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 
 import { Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
-const SizeSelect: React.FC = () => {
-  const [selectedValue, setSelectedValue] = useState<string>('9');
+  interface SizeSelectProps {
+    selectedSize: string;
+    setSelectedSize: React.Dispatch<React.SetStateAction<string>>;
+  }
 
+const SizeSelect: React.FC<SizeSelectProps> = ({ selectedSize, setSelectedSize }) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedValue(event.target.value);
+    setSelectedSize(event.target.value);
   };
 
   return (
-    <Select value={selectedValue} onChange={handleChange} size="small">
+    <Select value={selectedSize} onChange={handleChange} size="small">
       <MenuItem value="6">6</MenuItem>
       <MenuItem value="7">7</MenuItem>
       <MenuItem value="8">8</MenuItem>

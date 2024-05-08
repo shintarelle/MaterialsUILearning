@@ -28,6 +28,7 @@ import SearchSortFilter from './SearchSortFilter';
 import GenderChipsArray from './GenderChipsArray';
 import ColorsChipsArray from './ColorsChipsArray';
 
+const availableColors = ['#4caf50', '#2196f3', '#f44336', '#ffeb3b', '#000', '#fff']
 
 interface SearchPanelProps {
   onSearch: (value: string) => void;
@@ -179,8 +180,12 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Color
               </Typography>
-              <Box sx={{mb: 4}}>
-                <ColorPicker colors={colors} setColors={setColors} />
+              <Box sx={{ mb: 4 }}>
+                <ColorPicker
+                  availableColors={availableColors}
+                  colors={colors}
+                  setColors={setColors}
+                />
               </Box>
 
               <Typography variant="body1" sx={{ mb: 2 }}>
