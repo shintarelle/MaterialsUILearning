@@ -1,5 +1,5 @@
 // import Input from '@mui/joy/Input';
-import React, { FC, useState } from 'react'
+import React, { FC, useContext, useState } from 'react'
 
 import AddIcon from '@mui/icons-material/Add';
 import FormLabel from '@mui/material/FormLabel';
@@ -12,7 +12,8 @@ import { Box, Divider, Rating, Stack, Typography, FormHelperText, Link, Button }
 import SizeSelect from './SizeSelect';
 import ColorPicker from '../sort/ColorPicker';
 import QuantitySelect from './QuantitySelect';
-import { CardData } from '../cards/CardSmall';
+import { CardData } from '../../app/types'
+import { BasketContext } from '../../app/BasketContext';
 
 
 interface ProductInfoProps {
@@ -22,11 +23,14 @@ interface ProductInfoProps {
 }
 
 const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors, productCurrent }) => {
-  const [selectedSize, setSelectedSize] = useState<string>('');
+  const [selectedSize, setSelectedSize] = useState<string>('6');
   const [quantity, setQuantity] = useState(1);
+
+  const { cartItems, addToCart} = useContext(BasketContext);
 
   const handleSubmit = () => {
     const selectedData = {
+      id: productCurrent.id,
       title: productCurrent?.title,
       size: selectedSize,
       color: productCurrent?.color,
@@ -35,6 +39,8 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors, productCurrent }
       image: productCurrent?.image,
     };
     console.log(selectedData);
+    addToCart(selectedData);
+
   };
   return (
     <Box sx={{ p: '32px', minWidth: '400px' }}>
@@ -113,12 +119,10 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors, productCurrent }
             <Typography variant="body1" sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
               Quantity
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+
               <QuantitySelect quantity={quantity} setQuantity={setQuantity} />
-              <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                Available: 7
-              </Typography>
-            </Box>
+
+
           </Stack>
 
           <Divider />

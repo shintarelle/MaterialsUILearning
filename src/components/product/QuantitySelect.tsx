@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { IconButton, Stack } from '@mui/material';
-import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
 
 interface QuantitySelectProps {
   quantity: number;
@@ -20,6 +20,7 @@ const QuantitySelect: React.FC<QuantitySelectProps> = ({ quantity, setQuantity }
   };
 
   return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
     <Stack
       direction="row"
       justifyContent="space-between"
@@ -39,6 +40,10 @@ const QuantitySelect: React.FC<QuantitySelectProps> = ({ quantity, setQuantity }
         <AddIcon sx={{ width: '16px', height: '16px', opacity: 0.7 }} />
       </IconButton>
     </Stack>
+    <Typography variant="caption" sx={{ opacity: 0.7 }}>
+      Available: 7
+    </Typography>
+    </Box>
   );
 };
 

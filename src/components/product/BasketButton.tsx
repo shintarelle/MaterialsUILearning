@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Link, Badge, IconButton, Box } from '@mui/material'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { BasketContext } from 'src/app/BasketContext';
 
 function BasketButton() {
+  const { cartItems } = useContext(BasketContext);
 
   return (
     <Link href="/dashboard/one/checkout">
@@ -26,7 +28,7 @@ function BasketButton() {
         }}
       >
         <IconButton>
-          <Badge badgeContent={1} color="error">
+          <Badge badgeContent={cartItems.length} color="error">
             <ShoppingBasketIcon />
           </Badge>
         </IconButton>

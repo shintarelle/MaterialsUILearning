@@ -16,7 +16,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Radio, Stack, Divider, Checkbox, FormGroup, FormLabel, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
 
-import { CardData } from '../cards/CardSmall'
+import { CardData } from '../../app/types'
 import PriceRange from './PriceRange';
 import PriceChips from './PriceChips';
 import ColorPicker from './ColorPicker';
@@ -237,7 +237,6 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
             {filteredProducts.length === 1
               ? `${filteredProducts.length} result found`
               : `${filteredProducts.length} results found`}
-            {/* 4 results found */}
           </Typography>
 
           <Stack
