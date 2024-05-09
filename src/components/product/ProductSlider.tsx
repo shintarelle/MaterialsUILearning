@@ -15,7 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import './productSlider.css'
 import {images} from '../../_mock/assets'
-import { CardData } from '../cards/CardSmall';
+import { CardData } from '../../app/types';
 
 
 // В компонентах CustomPrevArrow и CustomNextArrow
