@@ -10,6 +10,7 @@ import { StepIconProps } from '@mui/material';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import Step1 from './Step1';
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -73,6 +74,12 @@ function QontoStepIcon(props: StepIconProps) {
 
 const steps = ['Cart', 'Billing & address', 'Payment'];
 
+const stepContents = [
+  <Step1 />,
+  <Box>Step 2 content</Box>,
+  <Box>Step 3 content</Box>,
+];
+
 export default function CustomizedSteppers() {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -91,7 +98,12 @@ export default function CustomizedSteppers() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} sx={{width: '100%', maxWidth: '768px'}}>
+        <Stepper
+          alternativeLabel
+          activeStep={activeStep}
+          connector={<QontoConnector />}
+          sx={{ width: '100%', maxWidth: '768px' }}
+        >
           {steps.map((label, index) => (
             <Step key={label}>
               <StepLabel
@@ -104,6 +116,7 @@ export default function CustomizedSteppers() {
           ))}
         </Stepper>
       </Box>
+      <Box sx={{ mt: 2 }}>{stepContents[activeStep]}</Box>
       {activeStep === steps.length ? (
         <>
           <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - you&apos;re finished</Typography>
@@ -114,7 +127,7 @@ export default function CustomizedSteppers() {
         </>
       ) : (
         <>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
               Back

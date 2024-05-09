@@ -113,12 +113,10 @@ const ProductInfo: FC<ProductInfoProps> = ({ colors, setColors, productCurrent }
             <Typography variant="body1" sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
               Quantity
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+
               <QuantitySelect quantity={quantity} setQuantity={setQuantity} />
-              <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                Available: 7
-              </Typography>
-            </Box>
+
+
           </Stack>
 
           <Divider />

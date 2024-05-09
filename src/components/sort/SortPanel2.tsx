@@ -237,7 +237,6 @@ const SortPanel: React.FC<SearchPanelProps> = ({ onSearch, sortBy, setSortBy, ge
             {filteredProducts.length === 1
               ? `${filteredProducts.length} result found`
               : `${filteredProducts.length} results found`}
-            {/* 4 results found */}
           </Typography>
 
           <Stack
