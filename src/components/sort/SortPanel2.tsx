@@ -16,7 +16,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { Radio, Stack, Divider, Checkbox, FormGroup, FormLabel, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
 
-import { CardData } from '../cards/CardSmall'
+import { CardData } from '../../app/types'
 import PriceRange from './PriceRange';
 import PriceChips from './PriceChips';
 import ColorPicker from './ColorPicker';

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Box, IconButton, Stack, Typography } from '@mui/material';
-import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
 
 interface QuantitySelectProps {
   quantity: number;

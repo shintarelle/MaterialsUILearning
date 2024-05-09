@@ -10,19 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
-
-// Интерфейс для данных, передаваемых в компонент
-export interface CardData {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  collection?: string;
-  gender: string;
-  category: string;
-  color: string;
-  rating: number;
-}
+import { CardData } from '../../app/types'
 
 // Пропсы компонента CardSmall
 interface CardSmallProps {

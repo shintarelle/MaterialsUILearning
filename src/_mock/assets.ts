@@ -528,7 +528,7 @@ export const _descriptions = [
 
 export const products = [
   {
-    id: 1,
+    id: '1',
     title: 'Nike Air Force 1 NDESTRUKT',
     price: 83.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
@@ -539,7 +539,7 @@ export const products = [
     rating: 4,
   },
   {
-    id: 2,
+    id: '2',
     title: 'Foundations Matte Flip Flop',
     price: 59.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
@@ -550,7 +550,7 @@ export const products = [
     rating: 3,
   },
   {
-    id: 3,
+    id: '3',
     title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
     price: 67.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
@@ -560,7 +560,7 @@ export const products = [
     rating: 2,
   },
   {
-    id: 4,
+    id: '4',
     title: 'Arizona Soft Footbed Sandal',
     price: 78.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
@@ -571,7 +571,7 @@ export const products = [
     rating: 1,
   },
   {
-    id: 5,
+    id: '5',
     title: 'Nike Air Force 1 NDESTRUKT',
     price: 83.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg',
@@ -581,7 +581,7 @@ export const products = [
     rating: 4,
   },
   {
-    id: 6,
+    id: '6',
     title: 'Foundations Matte Flip Flop',
     price: 59.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
@@ -592,7 +592,7 @@ export const products = [
     rating: 3,
   },
   {
-    id: 7,
+    id: '7',
     title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
     price: 67.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
@@ -602,7 +602,7 @@ export const products = [
     rating: 2,
   },
   {
-    id: 8,
+    id: '8',
     title: 'Arizona Soft Footbed Sandal',
     price: 78.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
@@ -613,7 +613,7 @@ export const products = [
     rating: 4,
   },
   {
-    id: 9,
+    id: '9',
     title: 'Nike Air Force 1 NDESTRUKT',
     price: 83.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
@@ -623,7 +623,7 @@ export const products = [
     rating: 3,
   },
   {
-    id: 10,
+    id: '10',
     title: 'Foundations Matte Flip Flop',
     price: 59.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',
@@ -634,7 +634,7 @@ export const products = [
     rating: 2,
   },
   {
-    id: 11,
+    id: '11',
     title: 'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
     price: 67.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_20.jpg',
@@ -644,7 +644,7 @@ export const products = [
     rating: 4,
   },
   {
-    id: 12,
+    id: '12',
     title: 'Arizona Soft Footbed Sandal',
     price: 78.74,
     image: 'https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_1.jpg',

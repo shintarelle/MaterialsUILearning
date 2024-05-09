@@ -1,17 +1,20 @@
 'use client'
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import Table from '@mui/material/Table';
-import Paper from '@mui/material/Paper';
 import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableContainer from '@mui/material/TableContainer';
-import { Avatar, Box, Divider, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
+
+import { BasketContext } from 'src/app/BasketContext';
 
 import QuantitySelect from '../product/QuantitySelect';
 
@@ -32,7 +35,12 @@ const rows = [
 ];
 
 export default function OrderTable() {
-  const [quantity, setQuantity] = useState(1);
+  const { cartItems, addToCart, updateItem, deleteItemById } = useContext(BasketContext);
+  const [, setQuantity] = useState(1);
+
+  const handleChangeQuantity = () => {
+
+  }
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
@@ -47,12 +55,12 @@ export default function OrderTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.product}>
+          {cartItems.map((item) => (
+            <TableRow key={item.title}>
               <TableCell component="th" scope="row" sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://api-prod-minimal-v510.vercel.app/assets/images/m_product/product_10.jpg"
+                  src={item.image}
                   sx={{
                     width: '64px',
                     height: '64px',
@@ -61,7 +69,7 @@ export default function OrderTable() {
                   }}
                 />
                 <Stack>
-                  <Typography variant="subtitle2">Nike Air Force 1 NDESTRUKT</Typography>
+                  <Typography variant="subtitle2">{item.title}</Typography>
                   <Stack direction="row" alignItems="center">
                     size:
                     <Stack
@@ -77,7 +85,7 @@ export default function OrderTable() {
                         ml: '4px',
                       }}
                     >
-                      9
+                      {item.size}
                     </Stack>
                     <Divider
                       orientation="vertical"
@@ -95,19 +103,63 @@ export default function OrderTable() {
                           width: '16px',
                           height: '16px',
                           borderRadius: '50%',
-                          backgroundColor: 'green',
+                          backgroundColor: item.color,
                         }}
                       />
                     </Stack>
                   </Stack>
                 </Stack>
               </TableCell>
-              <TableCell align="right">{`$${row.price}`}</TableCell>
-              <TableCell >
-                <QuantitySelect quantity={quantity} setQuantity={setQuantity} />
+              <TableCell align="right">{`$${item.price}`}</TableCell>
+              <TableCell>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    alignItems: 'flex-end',
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    sx={{
+                      p: '4px',
+                      width: '88px',
+                      border: '1px solid rgba(145, 158, 171, 0.2)',
+                      borderRadius: '8px',
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => updateItem(item, item.quantity - 1)}
+                      size="small"
+                      sx={{ p: '5px' }}
+                    >
+                      <RemoveIcon sx={{ width: '16px', height: '16px', opacity: 0.7 }} />
+                    </IconButton>
+                    <span>{item.quantity}</span>
+                    <IconButton
+                      onClick={() => updateItem(item, item.quantity + 1)}
+                      size="small"
+                      sx={{ p: '5px' }}
+                    >
+                      <AddIcon sx={{ width: '16px', height: '16px', opacity: 0.7 }} />
+                    </IconButton>
+                  </Stack>
+                  <Typography variant="caption" sx={{ opacity: 0.7 }}>
+                    Available: 7
+                  </Typography>
+                </Box>
               </TableCell>
-              <TableCell align="right">{`$${row.totalPrice}`}</TableCell>
-              <TableCell align="right">{row.icon}</TableCell>
+              <TableCell align="right">{`$${
+                Math.round(item.price * item.quantity * 100) / 100
+              }`}</TableCell>
+              <TableCell align="right">
+                <Button onClick={() => deleteItemById(item.id)}>
+                  <DeleteIcon />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
