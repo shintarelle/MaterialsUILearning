@@ -69,7 +69,7 @@ export default function OrderTable() {
                   }}
                 />
                 <Stack>
-                  <Typography variant="subtitle2">{item.title}</Typography>
+                  <Typography variant="subtitle2" sx={{maxWidth: '240px', overflow: 'hidden'}}>{item.title}</Typography>
                   <Stack direction="row" alignItems="center">
                     size:
                     <Stack
