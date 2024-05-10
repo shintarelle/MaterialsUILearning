@@ -1,10 +1,22 @@
+import React, { useContext } from 'react'
+
 import { Box, Button, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
-import React from 'react'
+
+import { BasketContext } from 'src/app/BasketContext';
+
 import DiscountForm from './DiscountForm';
 
-function OrederSummary() {
+interface OrederSummaryProps {
+  handleNext: () => void;
+  isStepBilling: boolean;
+}
+
+const OrderSummary: React.FC<OrederSummaryProps> = ({ handleNext, isStepBilling }) => {
+  const { cartItems } = useContext(BasketContext);
+
+  const summary = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: '392px', p: '12px' }}>
+    <Box sx={{ flexGrow: 1, maxWidth: { xs: '100%', md: '392px' }, minWidth: '302px', p: '12px' }}>
       <Card elevation={3} sx={{ width: '100%', mb: '24px' }}>
         <CardHeader title="Order Summary" sx={{ padding: '24px 24px 0px', color: '#000' }} />
 
@@ -12,7 +24,7 @@ function OrederSummary() {
           <Stack gap="16px">
             <Stack direction="row" justifyContent="space-between">
               <Typography variant="body2">Sub Total</Typography>
-              <Typography variant="h6">$25.18</Typography>
+              <Typography variant="h6">{Math.round(summary * 100) / 100}</Typography>
             </Stack>
             <Stack direction="row" justifyContent="space-between">
               <Typography variant="body2">Discount</Typography>
@@ -26,7 +38,7 @@ function OrederSummary() {
               <Typography variant="h6">Total</Typography>
               <Stack alignItems="flex-end">
                 <Typography variant="h6" color="error">
-                  $25.18
+                  {Math.round(summary * 100) / 100}
                 </Typography>
                 <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
                   (VAT included if applicable)
@@ -37,11 +49,13 @@ function OrederSummary() {
           </Stack>
         </CardContent>
       </Card>
-      <Button variant="contained" size="large" sx={{ width: '100%' }}>
-        Check Out
-      </Button>
+      {!isStepBilling && (
+        <Button variant="contained" size="large" sx={{ width: '100%' }} onClick={handleNext}>
+          Check Out
+        </Button>
+      )}
     </Box>
   );
-}
+};
 
-export default OrederSummary
+export default OrderSummary
