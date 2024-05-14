@@ -13,6 +13,7 @@ interface Address {
 interface DeliveryContextType {
   address: Address;
   setAddress: (selectedAddress: Address) => void;
+  clearAddress: () => void;
 }
 
 export const DeliveryContext = createContext<DeliveryContextType>({
@@ -24,7 +25,8 @@ export const DeliveryContext = createContext<DeliveryContextType>({
     isDefault: false
   },
 
-  setAddress: (selectedAddress: Address) => {},
+  setAddress: (selectedAddress: Address) => { },
+  clearAddress: () => {}
 });
 
 export const DeliveryProvider = ({ children }: { children: React.ReactNode }) => {
@@ -35,6 +37,17 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
     phone: '',
     isDefault: false,
   });
+
+  const clearAddress = () => {
+    setAddress({
+    name: '',
+    place: '',
+    address: '',
+    phone: '',
+    isDefault: false,
+    });
+    localStorage.removeItem('address');
+  }
 
   // Загрузка корзины из Local Storage при загрузке компонента
   useEffect(() => {
@@ -50,7 +63,7 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
   }, [address]);
 
 
-  console.log('Address :', address);
+  console.log('Address in context:', address);
 
   const contextValue = useMemo(
     () => ({
@@ -59,6 +72,7 @@ export const DeliveryProvider = ({ children }: { children: React.ReactNode }) =>
         setAddress(newAddress);
         localStorage.setItem('address', JSON.stringify(newAddress));
       },
+      clearAddress,
     }),
     [address, setAddress]
   );

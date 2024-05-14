@@ -12,7 +12,7 @@ interface Step1Props {
 const Step1: React.FC<Step1Props> = ({ handleNext }) => (
   <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }  }}>
     <Cart />
-    <OrderSummary handleNext={handleNext} isStepBilling={false} />
+    <OrderSummary handleNext={handleNext} isStepBilling={false} isStepPayment={false} />
   </Box>
 );
 

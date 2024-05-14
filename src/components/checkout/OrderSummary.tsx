@@ -3,18 +3,27 @@ import React, { useContext } from 'react'
 import { Box, Button, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
 
 import { BasketContext } from 'src/app/BasketContext';
+import { DeliveryContext } from 'src/app/DeliveryContex';
 
 import DiscountForm from './DiscountForm';
 
 interface OrederSummaryProps {
   handleNext: () => void;
   isStepBilling: boolean;
+  isStepPayment: boolean;
 }
 
-const OrderSummary: React.FC<OrederSummaryProps> = ({ handleNext, isStepBilling }) => {
-  const { cartItems } = useContext(BasketContext);
+const OrderSummary: React.FC<OrederSummaryProps> = ({ handleNext, isStepBilling, isStepPayment }) => {
+  const { cartItems, clearAll } = useContext(BasketContext);
+  const { address, clearAddress } = useContext(DeliveryContext);
 
   const summary = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const handleCompleteOrder = () => {
+    handleNext()
+    clearAll()
+    clearAddress()
+  }
   return (
     <Box sx={{ flexGrow: 1, maxWidth: { xs: '100%', md: '392px' }, minWidth: '302px', p: '12px' }}>
       <Card elevation={3} sx={{ width: '100%', mb: '24px' }}>
@@ -49,9 +58,20 @@ const OrderSummary: React.FC<OrederSummaryProps> = ({ handleNext, isStepBilling 
           </Stack>
         </CardContent>
       </Card>
-      {!isStepBilling && (
-        <Button variant="contained" size="large" sx={{ width: '100%' }} onClick={handleNext}>
-          Check Out
+      {!isStepBilling &&
+        !isStepPayment && (
+          <Button variant="contained" size="large" sx={{ width: '100%' }} onClick={handleNext}>
+            Check Out
+          </Button>
+        )}
+      {isStepPayment && (
+        <Button
+          variant="contained"
+          size="large"
+          sx={{ width: '100%' }}
+          onClick={handleCompleteOrder}
+        >
+          Complete Order
         </Button>
       )}
     </Box>
