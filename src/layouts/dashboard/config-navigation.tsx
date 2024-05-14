@@ -48,13 +48,13 @@ export function useNavData() {
     () => [
       // PRODUCT
       // ----------------------------------------------------------------------
-      {
-        subheader: 'Product page',
-        items: [
-          { title: 'product', path: paths.product.root, icon: ICONS.dashboard },
+      // {
+      //   subheader: 'Product page',
+      //   items: [
+      //     { title: 'product', path: paths.product.root, icon: ICONS.dashboard },
 
-        ],
-      },
+      //   ],
+      // },
 
       // OVERVIEW
       // ----------------------------------------------------------------------

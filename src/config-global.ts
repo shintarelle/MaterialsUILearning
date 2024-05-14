@@ -39,4 +39,4 @@ export const MAPBOX_API = process.env.NEXT_PUBLIC_MAPBOX_API;
 export const PATH_AFTER_LOGIN = paths.dashboard.root; // as '/dashboard'
 
 // вход без авторизации
-export const PATH_WITHOUT_LOGIN = paths.product.root
+// export const PATH_WITHOUT_LOGIN = paths.product.root

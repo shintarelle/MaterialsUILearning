@@ -31,7 +31,7 @@ export const paths = {
     },
   },
   // Product
-  product: {
-    root: ROOTS.PRODUCT,
-  },
+  // product: {
+  //   root: ROOTS.PRODUCT,
+  // },
 };

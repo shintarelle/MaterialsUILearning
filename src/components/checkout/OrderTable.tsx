@@ -16,8 +16,6 @@ import { Avatar, Box, Button, Divider, IconButton, Stack, Typography } from '@mu
 
 import { BasketContext } from 'src/app/BasketContext';
 
-import QuantitySelect from '../product/QuantitySelect';
-
 function createData(
   product: string,
   price: number,
@@ -35,12 +33,8 @@ const rows = [
 ];
 
 export default function OrderTable() {
-  const { cartItems, addToCart, updateItem, deleteItemById } = useContext(BasketContext);
-  const [, setQuantity] = useState(1);
+  const { cartItems, updateItem, deleteItemById } = useContext(BasketContext);
 
-  const handleChangeQuantity = () => {
-
-  }
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
@@ -56,7 +50,7 @@ export default function OrderTable() {
         </TableHead>
         <TableBody>
           {cartItems.map((item) => (
-            <TableRow key={item.title}>
+            <TableRow key={`${item.title}${item.size}${item.quantity}`}>
               <TableCell component="th" scope="row" sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar
                   alt="Remy Sharp"

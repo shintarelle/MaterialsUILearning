@@ -12,6 +12,7 @@ import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context/jwt';
 import { BasketProvider } from './BasketContext';
+import { DeliveryProvider } from './DeliveryContex';
 
 // ----------------------------------------------------------------------
 
@@ -59,7 +60,11 @@ export default function RootLayout({ children }: Props) {
             <MotionLazy>
               <SettingsDrawer />
               <ProgressBar />
-              <BasketProvider>{children}</BasketProvider>
+              <BasketProvider>
+                <DeliveryProvider>
+                  {children}
+                </DeliveryProvider>
+              </BasketProvider>
             </MotionLazy>
           </ThemeProvider>
         </SettingsProvider>

@@ -11,7 +11,10 @@ import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
 
+// customizing connector
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
@@ -74,11 +77,6 @@ function QontoStepIcon(props: StepIconProps) {
 
 const steps = ['Cart', 'Billing & address', 'Payment'];
 
-const stepContents = [
-  <Step1 />,
-  <Box>Step 2 content</Box>,
-  <Box>Step 3 content</Box>,
-];
 
 export default function CustomizedSteppers() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -94,6 +92,11 @@ export default function CustomizedSteppers() {
   const handleReset = () => {
     setActiveStep(0);
   };
+  const stepContents = [
+    <Step1 handleNext={handleNext} />,
+    <Step2 handleNext={handleNext} handleBack={handleBack} />,
+    <Step3 handleNext={handleNext} handleBack={handleBack} />,
+  ];
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -126,18 +129,15 @@ export default function CustomizedSteppers() {
           </Box>
         </>
       ) : (
-        <>
-          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            {/* <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
+            </Button> */}
           </Box>
-        </>
       )}
     </Box>
   );
