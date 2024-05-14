@@ -50,7 +50,7 @@ export default function OrderTable() {
         </TableHead>
         <TableBody>
           {cartItems.map((item) => (
-            <TableRow key={item.title}>
+            <TableRow key={`${item.title}${item.size}${item.quantity}`}>
               <TableCell component="th" scope="row" sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar
                   alt="Remy Sharp"

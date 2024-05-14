@@ -62,7 +62,11 @@ const BillingAndAddresses: React.FC<BillingAndAddressesProps> = ({ handleNext, h
       {addresses.map((address) => (
         <AddressPoint
           key={address.name}
-          address={address}
+          name={address.name}
+          place={address.place}
+          address={address.address}
+          phone={address.phone}
+          isDefault={address.isDefault}
           handleNext={handleNext}
           setAddresses={setAddresses}
         />

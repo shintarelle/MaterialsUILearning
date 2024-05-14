@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useState, FC } from 'react';
+import { useState, FC, useContext } from 'react';
 
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
@@ -11,7 +11,7 @@ import OpenIcon from '@mui/icons-material/OpenInNew';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { Stack, Rating, Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Autocomplete, IconButton, Checkbox } from '@mui/material';
+import { Stack, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Autocomplete, Checkbox } from '@mui/material';
 
 const countries = ['USA', 'Canada', 'Germany', 'France', 'UK', 'Japan'];
 
@@ -30,7 +30,10 @@ interface AddDeliveryAddressDialogProps {
   >;
 }
 
-const AddDeliveryAddressDialog:FC<AddDeliveryAddressDialogProps> = ({ setAddresses }) =>  {
+const AddDeliveryAddressDialog: FC<AddDeliveryAddressDialogProps> = ({ setAddresses }) => {
+
+
+
   const [open, setOpen] = useState<boolean>(false);
   const [place, setPlace] = useState<string>('Home');
   const [phone, setPhone] = useState<string>('');
@@ -99,17 +102,6 @@ const AddDeliveryAddressDialog:FC<AddDeliveryAddressDialogProps> = ({ setAddress
     };
     setAddresses((prevAddresses) => [...prevAddresses, formJson]);
 
-    // const formData = new FormData(event.currentTarget);
-    // console.log(formData);
-
-    // // Преобразуем FormData в объект JavaScript
-    // const formJson: Record<string, string> = {};
-    // formData.forEach((value, key) => {
-    //   formJson[key] = value.toString();
-    // });
-
-    // Выводим объект в консоль
-    console.log(formJson);
     clearForm();
     handleClose();
   };

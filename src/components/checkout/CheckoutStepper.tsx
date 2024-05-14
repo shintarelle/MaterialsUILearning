@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import Step1 from './Step1';
 import Step2 from './Step2';
+import Step3 from './Step3';
 
 // customizing connector
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
@@ -94,7 +95,7 @@ export default function CustomizedSteppers() {
   const stepContents = [
     <Step1 handleNext={handleNext} />,
     <Step2 handleNext={handleNext} handleBack={handleBack} />,
-    <Box>Step 3 content</Box>,
+    <Step3 handleNext={handleNext} handleBack={handleBack} />,
   ];
 
   return (
